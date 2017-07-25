@@ -17,3 +17,8 @@ You must invite this bot in you server first. Then, you just have to use some si
 * `/lsvtrivia` : Get the daily trivias
 * `/lsvlumiere` : Get the daily article
 * `/lsvrand` : Get a random page
+
+## Thanks
+
+* [discord.py](https://github.com/Rapptz/discord.py)
+* [aiohttp](http://aiohttp.readthedocs.io/en/stable/index.html)
