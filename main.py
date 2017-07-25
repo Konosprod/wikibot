@@ -17,11 +17,13 @@ wh = Wikihandler()
 
 @bot.event
 async def on_ready():
+    """ Excute update status and username when ready"""
     await bot.edit_profile(username="Le saviez vous ?")
     await bot.change_presence(game=discord.Game(name="/lsvaide"))
 
 @bot.command(no_pm=True)
 async def lsvaide():
+    """" Print help """
     help=("Un bot qui permet d'obtenir les informations du jour sur wikipedia\n\n"
           "Commandes:\n"
           "\t/lsvaide       : Affiche l'aide\n"
@@ -33,6 +35,7 @@ async def lsvaide():
 
 @bot.command(pass_context=True, no_pm=True)
 async def lsvimage(context):
+    """ Send an oEmbed object of the daily image"""
     src, desc = await wh.getContentImageOfTheDay()
 
     emb = discord.Embed(title="Image du " + time.strftime("%#d %B %Y"), 
@@ -45,20 +48,25 @@ async def lsvimage(context):
 
 @bot.command(no_pm=True)
 async def lsvlumiere():
+    """ Send the daily article url """
     await bot.say(await wh.getContentLightOn())
 
 @bot.command(no_pm=True)
 async def lsvtrivia():
+    """ Send the last 2 trivias """
     await bot.say(await wh.getContentDidYouKnow())
 
 @bot.command(no_pm=True)
 async def lsvrand():
+    """ Send a random URL page """
     await bot.say(await wh.getContentRandomPage())
 
 async def cleanup():
+    """ Don't forget to clean everything"""
     await wh.cleanup()
 
 
 atexit.register(cleanup)
 
+# Put your bot token here
 bot.run('token')
