@@ -17,6 +17,7 @@ You must invite this bot in you server first. Then, you just have to use some si
 * `/lsvtrivia` : Get the daily trivias
 * `/lsvlumiere` : Get the daily article
 * `/lsvrand` : Get a random page
+* `/lsvtout` : Print everything
 
 ## Thanks
 
