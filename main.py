@@ -30,7 +30,8 @@ async def lsvaide():
           "\t/lsvimage   : Obtient l'image du jour\n"
           "\t/lsvlumiere : Obtient l'article du jour\n"
           "\t/lsvtrivia      : Affiche les trivias du jour\n"
-          "\t/lsvrand       : Affiche une page au hasard\n")
+          "\t/lsvrand       : Affiche une page au hasard\n"
+          "\t/lsvtout        : Affiche tout")
     await bot.say(help)
 
 @bot.command(pass_context=True, no_pm=True)
@@ -60,6 +61,22 @@ async def lsvtrivia():
 async def lsvrand():
     """ Send a random URL page """
     await bot.say(await wh.getContentRandomPage())
+
+@bot.command(no_pm=True, pass_context=True)
+async def lsvtout(context):
+    await bot.say(await wh.getContentLightOn())
+
+    src, desc = await wh.getContentImageOfTheDay()
+
+    emb = discord.Embed(title="Image du " + time.strftime("%#d %B %Y"), 
+                        description=desc,
+                        url="https://fr.wikipedia.org/wiki/Wikip%C3%A9dia:Image_du_jour/" + time.strftime("%#d_%B_%Y"), 
+                        colour=0xFF005D)
+    emb.set_image(url=src)
+    emb.set_author(name="Le saviez vous ?", icon_url=bot.user.default_avatar_url)
+    await bot.send_message(context.message.channel, embed=emb)
+
+    await bot.say(await wh.getContentDidYouKnow())
 
 async def cleanup():
     """ Don't forget to clean everything"""
